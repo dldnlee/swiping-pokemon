@@ -2,7 +2,8 @@
 
 body {
   margin: 0;
-  background: url('./assets/images/pokemon_center.jpg') center no-repeat;
+  background: url('./assets/images/pokemon_center.jpg') center , 
+  rgb(220,105,46);
 }
 
 .main-container {
