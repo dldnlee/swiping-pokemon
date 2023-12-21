@@ -57,7 +57,7 @@ async function addAll(index) {
   let slide;
   for(let i=index-30;i<index; i++){
     imageSrc = await getCardImageSource(i);
-    slide = createSwiperSlide(imageSrc, 'hello')
+    slide = createSwiperSlide(imageSrc, 'pokemon-card')
     insertLast(swiperWrapper, slide);
     
   }
@@ -65,6 +65,6 @@ async function addAll(index) {
 }
 
 
-addAll(getRandomNumber(21, 200));
+addAll(getRandomNumber(31, 200));
 
 
