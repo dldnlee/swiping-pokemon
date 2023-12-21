@@ -2,14 +2,10 @@
 
 
 
-
 .swiper .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: fit-content;
-  height: fit-content;
-  
 }
 
