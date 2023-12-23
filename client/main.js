@@ -1,18 +1,5 @@
-import { getNode as $, insertLast, insertFirst } from "./modules/index.js";
-
-// Extracting Pokemon Data
-async function getPokemonData(card_number) {
-  const stringCardNumber = card_number.toString()
-  const response = await fetch(`https://api.pokemontcg.io/v2/cards/swsh4-${stringCardNumber}`);
-  
-  return response.json();
-}
-
-// Extracting Image Source from Pokemon Data
-async function getCardImageSource(card_number) {
-  const data = await getPokemonData(card_number);
-  return data.data.images.small;
-}
+import { getNode as $, insertLast, insertFirst, getPokemonData, getCardImageSource, getRandomNumber } from "./modules/index.js";
+import "./data/pokemon_versions.json";
 
 // Swiper Slide Template Creator
 function createSwiperSlide(imageSource, alt) {
@@ -22,6 +9,20 @@ function createSwiperSlide(imageSource, alt) {
   </div>
   `
   )
+}
+
+
+
+async function addSlides(version, index){
+  const swiperWrapper = $('.swiper-wrapper');
+  let imageSrc;
+  let slide;
+  console.log('test');
+  for(let i=index-30;i<index; i++){
+    imageSrc = await getCardImageSource(version, i);
+    slide = createSwiperSlide(imageSrc, 'pokemon-card')
+    insertLast(swiperWrapper, slide);
+  }
 }
 
 // Swiper Initialization
@@ -45,26 +46,14 @@ function initializeSwiper() {
   }) 
 }
 
-// Get a random number between specified values
-function getRandomNumber(min, max) {
-  return Math.random() * (max - min) + min;
-}
 
 // Running the Whole Process
-async function addAll(index) {
-  const swiperWrapper = $('.swiper-wrapper');
-  let imageSrc;
-  let slide;
-  for(let i=index-30;i<index; i++){
-    imageSrc = await getCardImageSource(i);
-    slide = createSwiperSlide(imageSrc, 'pokemon-card')
-    insertLast(swiperWrapper, slide);
-    
-  }
+async function addAll() {
+  await addSlides('swsh4', getRandomNumber(31, 200));
   initializeSwiper();
 }
 
 
-addAll(getRandomNumber(31, 200));
+addAll();
 
 
