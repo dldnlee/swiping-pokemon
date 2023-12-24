@@ -139,7 +139,7 @@ gsap.from('.border-container', {
 const muteButton = $('.mute-button');
 const muteIcon = $('.mute-icon');
 const audio = $('.pokemon-audio');
-let muteToggle = false;
+let muteToggle = true;
 
 function handleMute() {
   muteToggle = !muteToggle;
@@ -156,6 +156,7 @@ function handleMute() {
 function audioVolumeControl(amount) {
   audio.volume = amount;
 }
+
 
 audioVolumeControl(0.6);
 
