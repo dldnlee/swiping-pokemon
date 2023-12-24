@@ -138,7 +138,20 @@ body {
 }
 
 
-
+.sound-controller {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  
+  & button {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  & img {
+    width: 50px;
+  }
+}
 
 
 

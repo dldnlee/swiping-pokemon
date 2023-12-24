@@ -136,6 +136,30 @@ gsap.from('.border-container', {
   duration: 2,
 })
 
+const muteButton = $('.mute-button');
+const muteIcon = $('.mute-icon');
+const audio = $('.pokemon-audio');
+let muteToggle = false;
+
+function handleMute() {
+  muteToggle = !muteToggle;
+  console.log(muteToggle);
+  if(muteToggle) {
+    muteIcon.src = "assets/icons/mute.png";
+    audio.pause();
+  } else {
+    muteIcon.src = "assets/icons/volume.png";
+    audio.play();
+  }
+}
+
+function audioVolumeControl(amount) {
+  audio.volume = amount;
+}
+
+audioVolumeControl(0.6);
+
+muteButton.addEventListener('click', handleMute);
 packContainer.addEventListener('click', handleCardPack);
 homeButton.addEventListener('click', handleHomeButton);
 rollAgainButton.addEventListener('click', handleRollAgain);
