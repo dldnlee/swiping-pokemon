@@ -45,9 +45,6 @@ body {
 }
 
 
-.hidden {
-  display: none;
-}
 
 
 
@@ -74,22 +71,7 @@ body {
   }
 }
 
-/* .top-border {
-  position: absolute;
-  width: 90%;
-  height: 100px;
-  border-radius: 0 0 50px 50px;
-  top: 0;
-  background: url('./assets/images/brick-texture.webp') center
-  ,black;
-} */
 
-/* .bottom-border {
-  position: absolute;
-  width: 90%;
-  height: 50px;
-  border-radius: 50px 50px 0 0;
-  bottom: 0;
-  background: url('./assets/images/brick-texture.webp') center
-  ,black;
-} */
+.hidden {
+  display: none;
+}

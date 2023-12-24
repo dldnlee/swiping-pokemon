@@ -20,4 +20,8 @@ export function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-
+export async function packData() {
+  const response = await fetch('./data/pokemon_versions.json');
+  const data = await response.json();
+  return data;
+}

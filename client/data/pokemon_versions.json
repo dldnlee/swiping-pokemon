@@ -3,21 +3,21 @@
   "sword_shield":
   {
     "id":"swsh1",
-    "max-cards":202
+    "max_cards":202
   },
   "scarlet_violet":
   {
     "id":"sv1",
-    "max-cards":198
+    "max_cards":198
   },
   "x_y":
   {
     "id":"xy8",
-    "max-cards":162
+    "max_cards":162
   },
   "sun_moon":
   {
     "id":"sm12",
-    "max-cards":236
+    "max_cards":236
   }
 }

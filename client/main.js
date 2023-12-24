@@ -1,4 +1,4 @@
-import { getNode as $, insertLast, getCardImageSource, getRandomNumber } from "./modules/index.js";
+import { getNode as $, insertLast, getCardImageSource, getRandomNumber, packData } from "./modules/index.js";
 // import "./data/pokemon_versions.json";
 
 // Swiper Slide Template Creator
@@ -44,43 +44,37 @@ function initializeSwiper() {
   }) 
 }
 
-function createCardPack() {
-  return( /* html */ `
-    <button>
-      <img src=""/>
-    </button>
-  
-  
-  `
-
-  )
-
-
-}
 // Running the Whole Process
 async function pickCard(version, max) {
   await addSlides(version, getRandomNumber(21, max));
   initializeSwiper();
 }
 
+// Hide element function
 function hideElement(node) {
-  node.classList.add('.hidden');
+  node.classList.add('hidden');
 }
 
-// const swiperContainer = $('.swiper-container');
+// Show element function
+function showElement(node) {
+  node.classList.remove('hidden');
+}
 
 // pickCard('swsh4', 200);
 // console.log(await packData());
 
-
-async function packData() {
-  const response = await fetch('./data/pokemon_versions.json');
-  const data = await response.json();
-  return data;
-}
-
-
 const packContainer = $('.pack-container');
+const swiperContainer = $('.swiper-container');
+
+const packInfo = await packData();
+console.log(packInfo.sun_moon.max_cards);
+
+function startEvent(version, max) { 
+  hideElement(packContainer);
+  pickCard(version, max);
+  showElement(swiperContainer);
+  console.log('test');
+}
 
 function handleCardPack(e) {
   e.preventDefault();
@@ -92,18 +86,26 @@ function handleCardPack(e) {
   switch(targetID) {
     case '1':
       console.log('sun and moon');
+      startEvent(packInfo.sun_moon.id, packInfo.sun_moon.max_cards);
       break;
     case '2':
       console.log('scarlet and violet');
+      startEvent(packInfo.scarlet_violet.id, packInfo.scarlet_violet.max_cards);
       break;
     case '3':
       console.log('sword and shield');
+      startEvent(packInfo.sword_shield.id, packInfo.sword_shield.max_cards);
       break;
     case '4':
       console.log('x and y');
+      startEvent(packInfo.x_y.id, packInfo.x_y.max_cards);
       break;
   }
 }
+
+
+
+
 
 packContainer.addEventListener('click', handleCardPack);
 
