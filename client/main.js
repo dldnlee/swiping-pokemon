@@ -11,8 +11,6 @@ function createSwiperSlide(imageSource, alt) {
   )
 }
 
-
-
 async function addSlides(version, index){
   const swiperWrapper = $('.swiper-wrapper');
   let imageSrc;
@@ -71,8 +69,8 @@ function hideElement(node) {
 
 // const swiperContainer = $('.swiper-container');
 
-pickCard('swsh4', 200);
-console.log(await packData());
+// pickCard('swsh4', 200);
+// console.log(await packData());
 
 
 async function packData() {
@@ -88,7 +86,23 @@ function handleCardPack(e) {
   e.preventDefault();
   const target = e.target.closest('button');
   if(!target) return;
-  console.log(target);
+
+  let targetID = target.dataset.id;
+
+  switch(targetID) {
+    case '1':
+      console.log('sun and moon');
+      break;
+    case '2':
+      console.log('scarlet and violet');
+      break;
+    case '3':
+      console.log('sword and shield');
+      break;
+    case '4':
+      console.log('x and y');
+      break;
+  }
 }
 
 packContainer.addEventListener('click', handleCardPack);
