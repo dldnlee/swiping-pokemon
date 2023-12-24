@@ -121,6 +121,21 @@ function handleRollAgain() {
   pickCard(currentVersion, currentMax);
 }
 
+
+
+// 아주 좋은 콜라보
+gsap.from('.pack-container',{
+  y:100,
+  opacity: 0,
+  stagger: 0.1,
+  duration: 1
+})
+
+gsap.from('.border-container', {
+  opacity: 0,
+  duration: 2,
+})
+
 packContainer.addEventListener('click', handleCardPack);
 homeButton.addEventListener('click', handleHomeButton);
 rollAgainButton.addEventListener('click', handleRollAgain);
