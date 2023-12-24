@@ -1,5 +1,5 @@
-import { getNode as $, insertLast, insertFirst, getPokemonData, getCardImageSource, getRandomNumber } from "./modules/index.js";
-import "./data/pokemon_versions.json";
+import { getNode as $, insertLast, getCardImageSource, getRandomNumber } from "./modules/index.js";
+// import "./data/pokemon_versions.json";
 
 // Swiper Slide Template Creator
 function createSwiperSlide(imageSource, alt) {
@@ -18,7 +18,7 @@ async function addSlides(version, index){
   let imageSrc;
   let slide;
   console.log('test');
-  for(let i=index-30;i<index; i++){
+  for(let i=index-20;i<index; i++){
     imageSrc = await getCardImageSource(version, i);
     slide = createSwiperSlide(imageSrc, 'pokemon-card')
     insertLast(swiperWrapper, slide);
@@ -37,7 +37,7 @@ function initializeSwiper() {
     cardsEffect: {
       slideShadows: false,
       perSlideOffset: 5,
-      perSlideRotate: 5
+      perSlideRotate: 1
     },
     navigation:{
       nextEl: '.swiper-button-next',
@@ -46,14 +46,50 @@ function initializeSwiper() {
   }) 
 }
 
+function createCardPack() {
+  return( /* html */ `
+    <button>
+      <img src=""/>
+    </button>
+  
+  
+  `
 
+  )
+
+
+}
 // Running the Whole Process
-async function addAll() {
-  await addSlides('swsh4', getRandomNumber(31, 200));
+async function pickCard(version, max) {
+  await addSlides(version, getRandomNumber(21, max));
   initializeSwiper();
 }
 
+function hideElement(node) {
+  node.classList.add('.hidden');
+}
 
-addAll();
+// const swiperContainer = $('.swiper-container');
 
+pickCard('swsh4', 200);
+console.log(await packData());
+
+
+async function packData() {
+  const response = await fetch('./data/pokemon_versions.json');
+  const data = await response.json();
+  return data;
+}
+
+
+const packContainer = $('.pack-container');
+
+function handleCardPack(e) {
+  e.preventDefault();
+  const target = e.target.closest('button');
+  if(!target) return;
+  console.log(target);
+}
+
+packContainer.addEventListener('click', handleCardPack);
 

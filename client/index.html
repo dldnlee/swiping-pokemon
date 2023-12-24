@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokemon Card Battle</title>
+  <title>포켓몬 카드 뽑기</title>
   <link rel="stylesheet" href="styles.css">
   <link
     rel="stylesheet"
@@ -13,16 +13,38 @@
   <script type="module" src="main.js"></script>
 </head>
 <body>
+  <audio src="./assets/audio/pokemon_bg.m4a" ></audio>
+  <div class="border-container">
+    <img class="pokemon-title" src="assets/images/pokemon_title.png" alt="Pokemon Card Generator">
+  </div>
   <main class="main-container">
-    <audio src="./assets/audio/pokemon_bg.m4a" autoplay></audio>
-    <div class="swiper">
-      <!-- Additional required wrapper -->
-      <div class="swiper-wrapper">
-      </div>
-      <!-- If we need navigation buttons -->
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
+    <div class="pack-container">
+      <button>
+        <img src="./assets/images/card_packs/sm12.jpg" alt="Sun and Moon">
+      </button>
+      <button>
+        <img src="./assets/images/card_packs/sv1.png" alt="Sun and Moon">
+      </button>
+      <button>
+        <img src="./assets/images/card_packs/swsh1.png" alt="Sun and Moon">
+      </button>
+      <button>
+        <img src="./assets/images/card_packs/xy7.jpg" alt="Sun and Moon">
+      </button>
     </div>
+
+    
+    <div class="swiper-container hidden">
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    </div>
+    
   </main>
 </body>
 </html>

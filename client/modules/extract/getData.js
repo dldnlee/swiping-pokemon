@@ -17,9 +17,7 @@ export async function getCardImageSource(card_version, card_number) {
 
 // Get a random number between specified values
 export function getRandomNumber(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
-// async function getCardVersion() {
-//   const version = await fetch('../')
-// }
+
