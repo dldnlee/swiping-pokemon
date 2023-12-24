@@ -74,6 +74,14 @@ body {
     background: rgb(207, 125, 1);
     cursor: pointer;
   }
+
+  & .home-button {
+    background: rgb(64, 64, 153);
+  }
+
+  & .home-button:hover {
+    background: rgb(41, 58, 131);
+  }
 }
 
 
