@@ -1,4 +1,13 @@
-import { getNode as $, insertLast, getCardImageSource, getRandomNumber, packData } from "./modules/index.js";
+import { 
+  getNode as $, 
+  insertLast, 
+  getCardImageSource, 
+  getRandomNumber, 
+  packData,
+  hideElement,
+  showElement,
+  removeAllChildNodes,
+} from "./modules/index.js";
 // import "./data/pokemon_versions.json";
 
 // Swiper Slide Template Creator
@@ -11,6 +20,7 @@ function createSwiperSlide(imageSource, alt) {
   )
 }
 
+// Add created slideds to swiper wrapper
 async function addSlides(version, index){
   const swiperWrapper = $('.swiper-wrapper');
   let imageSrc;
@@ -46,41 +56,38 @@ function initializeSwiper() {
 
 // Running the Whole Process
 async function pickCard(version, max) {
+  showElement(loadingScreen);
   await addSlides(version, getRandomNumber(21, max));
   initializeSwiper();
+  hideElement(loadingScreen);
 }
 
-// Hide element function
-function hideElement(node) {
-  node.classList.add('hidden');
-}
-
-// Show element function
-function showElement(node) {
-  node.classList.remove('hidden');
-}
-
-// pickCard('swsh4', 200);
-// console.log(await packData());
-
+// DOM Elements / Required Variables
+const loadingScreen = $('.loader-container');
 const packContainer = $('.pack-container');
 const swiperContainer = $('.swiper-container');
-
+const generatorContainer = $('.generator-container');
 const packInfo = await packData();
-console.log(packInfo.sun_moon.max_cards);
+const homeButton = $('.home-button');
+const rollAgainButton = $('.roll-again-button');
+const swiperWrapper = $('.swiper-wrapper')
+let currentVersion; 
+let currentMax;
 
+// Process after clicking on the Card Pack
 function startEvent(version, max) { 
   hideElement(packContainer);
+  currentVersion = version;
+  currentMax = max;
   pickCard(version, max);
-  showElement(swiperContainer);
-  console.log('test');
+  showElement(generatorContainer);
 }
 
+// Card Pack on Click function
 function handleCardPack(e) {
   e.preventDefault();
   const target = e.target.closest('button');
   if(!target) return;
-
   let targetID = target.dataset.id;
 
   switch(targetID) {
@@ -103,9 +110,17 @@ function handleCardPack(e) {
   }
 }
 
+// Home button handling
+function handleHomeButton() {
+  location.reload();
+}
 
-
-
+// Roll again button handling
+function handleRollAgain() {
+  removeAllChildNodes(swiperWrapper);
+  pickCard(currentVersion, currentMax);
+}
 
 packContainer.addEventListener('click', handleCardPack);
-
+homeButton.addEventListener('click', handleHomeButton);
+rollAgainButton.addEventListener('click', handleRollAgain);
